@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2021 by Federico Amedeo Izzo IU2NUO,                    *
+ *   Copyright (C) 2022 by Federico Amedeo Izzo IU2NUO,                    *
  *                         Niccolò Izzo IU2KIN                             *
  *                         Frederik Saraci IU2NRO                          *
  *                         Silvano Seva IU2KWO                             *
@@ -18,49 +18,47 @@
  *   along with this program; if not, see <http://www.gnu.org/licenses/>   *
  ***************************************************************************/
 
-#include <interfaces/nvmem.h>
+#include <interfaces/cps_io.h>
 
-void nvm_init()
+/**
+ * These functions do not apply to address based codeplugs
+ */
+int cps_open(char *cps_name)
 {
-
+    (void) cps_name;
+    return 0;
+}
+void cps_close() { }
+int cps_create(char *cps_name)
+{
+    (void) cps_name;
+    return 0;
 }
 
-void nvm_terminate()
-{
-
-}
-
-void nvm_readCalibData(void *buf)
-{
-    (void) buf;
-}
-
-void nvm_loadHwInfo(hwInfo_t *info)
-{
-    (void) info;
-}
-
-int nvm_readVFOChannelData(channel_t *channel)
+int cps_readChannelData(channel_t *channel, uint16_t pos)
 {
     (void) channel;
+    (void) pos;
     return -1;
 }
 
-int nvm_readSettings(settings_t *settings)
+int cps_readBankHeader(bankHdr_t *b_header, uint16_t pos)
 {
-    (void) settings;
+    (void) b_header;
+    (void) pos;
     return -1;
 }
 
-int nvm_writeSettings(const settings_t *settings)
+int32_t cps_readBankData(uint16_t bank_pos, uint16_t ch_pos)
 {
-    (void) settings;
+    (void) bank_pos;
+    (void) ch_pos;
     return -1;
 }
 
-int nvm_writeSettingsAndVfo(const settings_t *settings, const channel_t *vfo)
+int cps_readContactData(contact_t *contact, uint16_t pos)
 {
-    (void) settings;
-    (void) vfo;
+    (void) contact;
+    (void) pos;
     return -1;
 }

@@ -62,3 +62,5 @@ subprojects/tinyusb
 #ignore linux openrtx emulator history file
 .emulatorsh_history
 
+# OpenRTX Codeplugs
+*.rtxc

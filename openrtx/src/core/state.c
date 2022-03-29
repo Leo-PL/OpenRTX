@@ -25,7 +25,7 @@
 #include <hwconfig.h>
 #include <interfaces/platform.h>
 #include <interfaces/nvmem.h>
-#include <cps.h>
+#include <interfaces/cps_io.h>
 
 state_t state;
 
@@ -48,6 +48,18 @@ void state_init()
     if(nvm_readVFOChannelData(&state.channel) < 0)
     {
         state.channel = cps_getDefaultChannel();
+    }
+
+    /*
+     * Try loading default codeplug from nonvolatile memory, if fails create
+     * an empty one.
+     */
+    if(cps_open(NULL) < 0)
+    {
+        cps_create(NULL);
+        // If cannot open the newly created codeplug -> unrecoverable error
+        if(cps_open(NULL) < 0)
+            exit(-1);
     }
 
     /*
