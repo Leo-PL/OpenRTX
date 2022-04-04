@@ -66,7 +66,7 @@ int cps_create(char *cps_name)
     return 0;
 }
 
-int cps_readChannelData(channel_t *channel, uint16_t pos)
+int cps_readChannel(channel_t *channel, uint16_t pos)
 {
     if(pos >= maxNumChannels)
         return -1;
@@ -173,7 +173,7 @@ int cps_readChannelData(channel_t *channel, uint16_t pos)
     }
     else if(channel->mode == DMR)
     {
-        channel->dmr.contactName_index = chData.contact_name_index;
+        channel->dmr.contact_index = chData.contact_name_index;
         channel->dmr.dmr_timeslot      = chData.repeater_slot;
         channel->dmr.rxColorCode       = chData.colorcode_rx;
         channel->dmr.txColorCode       = chData.colorcode_tx;
@@ -229,7 +229,7 @@ int32_t cps_readBankData(uint16_t bank_pos, uint16_t ch_pos)
     return zoneData.member[ch_pos];
 }
 
-int cps_readContactData(contact_t *contact, uint16_t pos)
+int cps_readContact(contact_t *contact, uint16_t pos)
 {
     if(pos >= maxNumContacts) return -1;
 
