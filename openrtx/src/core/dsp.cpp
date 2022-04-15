@@ -66,7 +66,7 @@ void dsp_pwmCompensate(filter_state_t *state, audio_sample_t *buffer,
         state->u[1] = state->u[0];
         state->y[2] = state->y[1];
         state->y[1] = state->y[0];
-        buffer[i] = static_cast< audio_sample_t >((state->y[0] * 0.5f) + 0.5f);
+        buffer[i] = static_cast< audio_sample_t >(state->y[0] + 0.5f);
     }
 }
 
